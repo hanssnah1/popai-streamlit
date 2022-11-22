@@ -82,8 +82,7 @@ def notes_to_midi(
 
   pm = pretty_midi.PrettyMIDI()
   instrument = pretty_midi.Instrument(
-      program=pretty_midi.instrument_name_to_program(
-          'Piano'))
+      program=pretty_midi.instrument_name_to_program('Acoustic Grand Piano'))
 
   prev_start = 0
   for i, note in notes.iterrows():

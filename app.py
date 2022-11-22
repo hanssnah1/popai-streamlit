@@ -230,7 +230,7 @@ def run(file):
   out_file = 'output.mid'
   out_pm = notes_to_midi(generated_notes, out_file=out_file)
       #instrument_name=instrument_name
-  return()
+  return(out_pm)
 
 ################## Tensorflow Code
 
@@ -247,7 +247,7 @@ def main():
 
     if uploaded_file is not None:
         midi_file = uploaded_file
-        run(midi_file)
+        out_pm = run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()
@@ -257,7 +257,7 @@ def main():
     with st.spinner(f"Transcribing to FluidSynth"):
         midi_data = pretty_midi.PrettyMIDI(out_pm)
         audio_data = midi_data.fluidsynth()
-        #audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+        audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
 
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)

@@ -77,14 +77,13 @@ def midi_to_notes(midi_file: str) -> pd.DataFrame:
 def notes_to_midi(
   notes: pd.DataFrame,
   out_file: str,
-  instrument_name: str,
   velocity: int = 100,  # note loudness
 ) -> pretty_midi.PrettyMIDI:
 
   pm = pretty_midi.PrettyMIDI()
   instrument = pretty_midi.Instrument(
       program=pretty_midi.instrument_name_to_program(
-          instrument_name))
+          'Piano'))
 
   prev_start = 0
   for i, note in notes.iterrows():
@@ -230,8 +229,7 @@ def run(file):
   generated_notes.head(20)
 
   out_file = 'output.mid'
-  out_pm = notes_to_midi(
-      generated_notes, out_file=out_file)
+  out_pm = notes_to_midi(generated_notes, out_file=out_file)
       #instrument_name=instrument_name
   return()
 

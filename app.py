@@ -175,7 +175,7 @@ def run(file):
 
   data_dir = pathlib.Path('FinalDataset')
   filenames = glob.glob(str(data_dir/'*.mid*'))
-  print('Number of files:', len(filenames))
+  st.header(filenames)
 
 
   all_notes = []
@@ -183,7 +183,7 @@ def run(file):
     notes = midi_to_notes(f)
     all_notes.append(notes)
 
-  sample_file = filenames[0]
+  sample_file = filenames[-1]
 
   pm = pretty_midi.PrettyMIDI(sample_file)
 

@@ -1,5 +1,4 @@
 import io
-
 import collections
 import tensorflow as tf
 import glob
@@ -12,6 +11,9 @@ import seaborn as sns #statistical graphics
 import streamlit as st
 from bs4 import BeautifulSoup
 from scipy.io import wavfile
+
+pm = None
+instrument = None
 
 @st.cache(allow_output_mutation=True)
 def load_session():
@@ -177,9 +179,8 @@ def run(file):
   notes = midi_to_notes(file)
   all_notes.append(notes)
 
-  pm = pretty_midi.PrettyMIDI(file)
-
-  instrument = pm.instruments[0]
+  #pm = pretty_midi.PrettyMIDI(file)
+  #instrument = pm.instruments[0]
   instrument_name = pretty_midi.program_to_instrument_name(instrument.program)
 
   all_notes = pd.concat(all_notes)

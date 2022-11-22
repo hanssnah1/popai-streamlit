@@ -253,9 +253,11 @@ def main():
     uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
 
     midi_file = None
+    out_pm = None
 
     if uploaded_file is not None:
         midi_file = uploaded_file
+        run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()
@@ -263,7 +265,7 @@ def main():
     st.markdown("---")
 
     with st.spinner(f"Transcribing to FluidSynth"):
-        midi_data = pretty_midi.PrettyMIDI(midi_file)
+        midi_data = pretty_midi.PrettyMIDI(out_pm)
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(
             audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9

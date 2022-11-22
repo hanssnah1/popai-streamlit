@@ -174,7 +174,7 @@ def run(file):
   _SAMPLING_RATE = 16000
 
   data_dir = pathlib.Path('FinalDataset')
-  filenames = glob.glob(str(data_dir/'*.mid*'))
+  filenames = file
   st.header(filenames)
 
 

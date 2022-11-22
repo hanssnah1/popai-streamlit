@@ -181,7 +181,7 @@ def run(file):
 
   #pm = pretty_midi.PrettyMIDI(file)
   #instrument = pm.instruments[0]
-  instrument_name = pretty_midi.program_to_instrument_name(instrument.program)
+  #instrument_name = pretty_midi.program_to_instrument_name(instrument.program)
 
   all_notes = pd.concat(all_notes)
   all_notes["pitch"].max()
@@ -231,7 +231,8 @@ def run(file):
 
   out_file = 'output.mid'
   out_pm = notes_to_midi(
-      generated_notes, out_file=out_file, instrument_name=instrument_name)
+      generated_notes, out_file=out_file)
+      #instrument_name=instrument_name
   return()
 
 ################## Tensorflow Code

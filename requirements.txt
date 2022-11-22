@@ -2,12 +2,10 @@ beautifulsoup4
 mido
 pretty-midi
 pyfluidsynth
-requests
 scipy
 soundfile
 streamlit
 seaborn
 numpy
-glob
-collections
 pathlib
+pandas

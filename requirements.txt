@@ -7,7 +7,6 @@ scipy
 soundfile
 streamlit
 seaborn
-tensorflow
 numpy
 glob
 collections

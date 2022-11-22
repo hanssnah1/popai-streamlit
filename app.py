@@ -196,8 +196,8 @@ def run(file):
 
   seq_length = 25
   vocab_size = 22
-  seq_ds = create_sequences(notes_ds, seq_length, vocab_size)
-  seq_ds.element_spec
+  #seq_ds = create_sequences(notes_ds, seq_length, vocab_size)
+  #seq_ds.element_spec
 
   temperature = 4
   num_predictions = 15

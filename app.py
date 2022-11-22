@@ -186,7 +186,7 @@ def run(file):
   all_notes = pd.concat(all_notes)
   all_notes["pitch"].max()
 
-  raw_notes = midi_to_notes(file)
+  raw_notes = notes
 
   key_order = ['pitch', 'step', 'duration']
   train_notes = np.stack([all_notes[key] for key in key_order], axis=1)

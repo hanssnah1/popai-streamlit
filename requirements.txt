@@ -9,4 +9,6 @@ streamlit
 seaborn
 tensorflow
 numpy
-matplotlib
+glob
+collections
+pathlib

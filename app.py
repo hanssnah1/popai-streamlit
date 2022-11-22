@@ -1,8 +1,14 @@
 import io
 
+import collections
+import tensorflow as tf
+import glob
+import pathlib
 import numpy as np
+import pandas as pd
 import pretty_midi
 import requests
+import seaborn as sns #statistical graphics
 import streamlit as st
 from bs4 import BeautifulSoup
 from scipy.io import wavfile

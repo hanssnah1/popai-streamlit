@@ -251,15 +251,15 @@ def main():
     sess = load_session()
 
     uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
-    bitmidi_link = st.text_input(
-        "Or input BitMidi URL", "https://bitmidi.com/queen-bohemian-rhapsody-mid"
-    )
 
     midi_file = None
 
     if uploaded_file is not None:
         midi_file = uploaded_file
         run(midi_file)
+    else:
+        st.error("Input MIDI file")
+        st.stop()
 
     st.markdown("---")
 

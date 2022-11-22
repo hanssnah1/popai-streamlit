@@ -7,8 +7,6 @@ import streamlit as st
 from bs4 import BeautifulSoup
 from scipy.io import wavfile
 
-model = tf.keras.models.load_model("Finalmodel.h5")
-
 @st.cache(allow_output_mutation=True)
 def load_session():
     return requests.Session()
@@ -37,6 +35,9 @@ def download_from_bitmidi(url: str, sess: requests.Session) -> bytes:
     return r_midi_file.content
 
 ################## Tensorflow Code
+
+model = tf.keras.models.load_model("Finalmodel.h5")
+model.summary()
 
 def duration(tempDur):
   K = tempDur

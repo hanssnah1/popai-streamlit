@@ -4,5 +4,9 @@ pretty-midi
 pyfluidsynth
 requests
 scipy
-soundfile 
+soundfile
 streamlit
+seaborn
+tensorflow
+numpy
+matplotlib

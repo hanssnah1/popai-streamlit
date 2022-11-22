@@ -256,7 +256,6 @@ def main():
 
     if uploaded_file is not None:
         midi_file = uploaded_file
-        run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()

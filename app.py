@@ -173,19 +173,11 @@ def run(file):
   # Sampling rate for audio playback
   _SAMPLING_RATE = 16000
 
-  data_dir = pathlib.Path('FinalDataset')
-  filenames = file
-  st.header(filenames)
-
-
   all_notes = []
-  for f in filenames:
-    notes = midi_to_notes(f)
-    all_notes.append(notes)
+  notes = midi_to_notes(file)
+  all_notes.append(notes)
 
-  sample_file = filenames[-1]
-
-  pm = pretty_midi.PrettyMIDI(sample_file)
+  pm = pretty_midi.PrettyMIDI(file)
 
   instrument = pm.instruments[0]
   instrument_name = pretty_midi.program_to_instrument_name(instrument.program)
@@ -193,8 +185,7 @@ def run(file):
   all_notes = pd.concat(all_notes)
   all_notes["pitch"].max()
 
-  raw_notes = midi_to_notes(sample_file)
-  raw_notes.head()
+  raw_notes = midi_to_notes(file)
 
   key_order = ['pitch', 'step', 'duration']
   train_notes = np.stack([all_notes[key] for key in key_order], axis=1)
@@ -240,7 +231,7 @@ def run(file):
   out_file = 'output.mid'
   out_pm = notes_to_midi(
       generated_notes, out_file=out_file, instrument_name=instrument_name)
-  return(out_pm)
+  return()
 
 ################## Tensorflow Code
 
@@ -257,7 +248,7 @@ def main():
 
     if uploaded_file is not None:
         midi_file = uploaded_file
-        #run(midi_file)
+        run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()
@@ -265,7 +256,7 @@ def main():
     st.markdown("---")
 
     with st.spinner(f"Transcribing to FluidSynth"):
-        midi_data = pretty_midi.PrettyMIDI(midi_file)
+        midi_data = pretty_midi.PrettyMIDI(out_pm)
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(
             audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9

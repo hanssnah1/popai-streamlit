@@ -255,12 +255,6 @@ def main():
     st.markdown("---")
 
     with st.spinner(f"Please Wait"):
-      st.download_button(
-        label="Download Midi file",
-        data=out_pm,
-        file_name="output.mid"
-      )
-    """
 #midi_data = pretty_midi.PrettyMIDI(out_pm)
         midi_data = out_pm
         audio_data = midi_data.fluidsynth()
@@ -269,9 +263,13 @@ def main():
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 
-    st.audio(virtualfile)
+        st.download_button(
+        label="Download Midi file",
+        data=out_pm,
+        file_name="output.mid"
+      )
     st.markdown("Download the audio by right-clicking on the media player")
-"""
+
 
 if __name__ == "__main__":
     st.set_page_config(

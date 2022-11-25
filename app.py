@@ -266,7 +266,7 @@ def main():
         st.download_button(
           label="Download Midi file",
           data=out_pm,
-          file_name="output.mid"
+          file_name="output.mid",
       )
     st.markdown("Download the audio by right-clicking on the media player")
 

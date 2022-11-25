@@ -255,7 +255,7 @@ def main():
     st.markdown("---")
 
     with st.spinner(f"Please Wait"):
-#midi_data = pretty_midi.PrettyMIDI(out_pm)
+        midi_data = pretty_midi.PrettyMIDI(out_pm)
         midi_data = out_pm
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
@@ -265,7 +265,7 @@ def main():
 
         st.download_button(
           label="Download Midi file",
-          data=out_pm,
+          data=virtualfile,
           file_name="output.mid",
       )
     st.markdown("Download the audio by right-clicking on the media player")

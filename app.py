@@ -264,9 +264,9 @@ def main():
         wavfile.write(virtualfile, 44100, audio_data)
 
         st.download_button(
-        label="Download Midi file",
-        data=out_pm,
-        file_name="output.mid"
+          label="Download Midi file",
+          data=out_pm,
+          file_name="output.mid"
       )
     st.markdown("Download the audio by right-clicking on the media player")
 

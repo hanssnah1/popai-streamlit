@@ -268,7 +268,7 @@ def main():
         data=virtualfile,
         file_name="output.mid"
       )
-    st.audio(virtualfile)
+    #st.audio(virtualfile)
     st.markdown("Download the audio by right-clicking on the media player")
 
 

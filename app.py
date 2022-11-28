@@ -240,15 +240,13 @@ def main():
     st.header("Input a midi file of 25 notes.")
     sess = load_session()
 
-    uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
-    pref_length_of_pred = st.slider("Select number of notes", 1, 25, 10)
-
     maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
     pref_key = st.selectbox("Select Key", options = key_options)
     start = st.button("Run Program")
 
-
+    uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
+    pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 
     #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 

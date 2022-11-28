@@ -35,9 +35,9 @@ def has_download_attr(tag):
 )
 
 
-def get_binary_file_downloader_html(bin_file, file_label='File'):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
+def get_binary_file_downloader_html(out_pm, file_label='File'):
+    #with open(bin_file, 'rb') as f:
+    out_pm = f.read()
     bin_str = base64.b64encode(data).decode()
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
     return href
@@ -288,13 +288,13 @@ def main():
         wavfile.write(virtualfile, 44100, audio_data)
 
 
-        st.write(out_pm)
+        st.write(midi_data)
 
-    st.markdown(get_binary_file_downloader_html(out_pm, 'MIDI'), unsafe_allow_html = True)
+    st.markdown(get_binary_file_downloader_html(midi_data, 'MIDI'), unsafe_allow_html = True)
 
     st.download_button(
         label="Download Midi file",
-        data=out_pm.write("output.mid"),
+        data=midi_data,
         file_name="output.mid"
       )
     #st.audio(virtualfile)

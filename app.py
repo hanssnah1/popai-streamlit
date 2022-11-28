@@ -280,7 +280,7 @@ def main():
 
     st.download_button(
         label="Download Midi file",
-        data=virtualfile,
+        data=out_pm.write("output.mid"),
         file_name="output.mid"
       )
     #st.audio(virtualfile)

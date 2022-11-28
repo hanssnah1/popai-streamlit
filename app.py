@@ -242,6 +242,13 @@ def main():
 
     uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
 
+    #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
+    pref_length_of_pred = st.slider("Select number of notes", 1, 25, 10)
+
+    key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
+    pref_key = st.select_slider("Select Key", options = key_options)
+
+    maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     midi_file = None
     out_pm = None
 
@@ -269,7 +276,7 @@ def main():
         file_name="output.mid"
       )
     #st.audio(virtualfile)
-    st.markdown("Download the audio by right-clicking on the media player")
+
 
 
 if __name__ == "__main__":

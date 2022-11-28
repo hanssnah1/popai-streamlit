@@ -278,6 +278,9 @@ def main():
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 
+
+        out_pm.write("output.mid")
+
     st.download_button(
         label="Download Midi file",
         data=out_pm.write("output.mid"),

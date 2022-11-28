@@ -236,18 +236,21 @@ def run(file):
 
 def main():
 
-    st.title("MIDI Output GUI")
-    st.header("Input a midi file of 25 notes.")
+    st.image('Title.png', caption = "Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
+    st.image('Instructions.png', caption = "Input a midi file of 25 notes")
+    #st.title("Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
+    #st.header("Input a midi file of 25 notes.")
     sess = load_session()
+
+    uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
 
     maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
     pref_key = st.selectbox("Select Key", options = key_options)
-    start = st.button("Run Program")
-
-    uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
+    
     pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 
+    start = st.button("Run Program")
     #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 
     midi_file = None
@@ -282,17 +285,8 @@ def main():
 
 if __name__ == "__main__":
     st.set_page_config(
-        page_title="MIDI to WAV",
+        page_title="MIDI Output GUI",
         page_icon="musical_note",
         initial_sidebar_state="collapsed",
     )
     main()
-    with st.sidebar:
-        st.markdown(
-            '<h6>Made in &nbsp<img src="https://streamlit.io/images/brand/streamlit-mark-color.png" alt="Streamlit logo" height="16">&nbsp by <a href="https://twitter.com/andfanilo">@andfanilo</a></h6>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            '<div style="margin: 0.75em 0;"><a href="https://www.buymeacoffee.com/andfanilo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a></div>',
-            unsafe_allow_html=True,
-        )

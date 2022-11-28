@@ -260,7 +260,7 @@ def main():
     midi_file = None
     out_pm = None
 
-    if start:
+    if uploaded_file is not None:
         midi_file = uploaded_file
         out_pm = run(midi_file)
     else:

@@ -11,6 +11,10 @@ import seaborn as sns #statistical graphics
 import streamlit as st
 from bs4 import BeautifulSoup
 from scipy.io import wavfile
+from PIL import Image
+
+image1 = Image.open('Title.png')
+image2 = Image.open('Instructions.png')
 
 pm = None
 instrument = None
@@ -236,8 +240,8 @@ def run(file):
 
 def main():
 
-    st.image('Title.png', caption = "Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
-    st.image('Instructions.png', caption = "Input a midi file of 25 notes")
+    st.image(image1)
+    st.image(image2)
     #st.title("Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
     #st.header("Input a midi file of 25 notes.")
     sess = load_session()
@@ -247,7 +251,7 @@ def main():
     maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
     pref_key = st.selectbox("Select Key", options = key_options)
-    
+
     pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 
     start = st.button("Run Program")

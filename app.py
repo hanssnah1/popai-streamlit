@@ -288,9 +288,9 @@ def main():
         wavfile.write(virtualfile, 44100, audio_data)
 
 
-        st.write(midi_data)
+        #st.write(midi_data)
 
-    st.markdown(get_binary_file_downloader_html(midi_data, 'MIDI'), unsafe_allow_html = True)
+    #st.markdown(get_binary_file_downloader_html(midi_data, 'MIDI'), unsafe_allow_html = True)
 
     st.download_button(
         label="Download Midi file",

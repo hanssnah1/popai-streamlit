@@ -16,6 +16,7 @@ import tempfile
 
 image1 = Image.open('Title.png')
 image2 = Image.open('Instructions.png')
+temp = tempfile.NamedTemporaryFile(delete=False, prefix="out_", suffix=".mid")
 
 pm = None
 instrument = None
@@ -244,7 +245,7 @@ def run(file):
   out_file = 'output.mid'
   out_pm = notes_to_midi(generated_notes, out_file=out_file)
       #instrument_name=instrument_name
-  out_pm.write('midi', fpath = './output.mid')
+  return(out_pm)
 
 ################## Tensorflow Code
 
@@ -270,6 +271,7 @@ def main():
 
     midi_file = None
     out_pm = None
+    temp = tempfile.NamedTemporaryFile(delete=False, prefix="out_", suffix=".mid")
 
     if uploaded_file is not None:
         midi_file = uploaded_file
@@ -285,11 +287,11 @@ def main():
         midi_data = out_pm
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
-
+        temp.write(out_pm)
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 
-    st.markdown(get_binary_file_downloader_html(fpath, 'MIDI'), unsafe_allow_html = True)
+    st.markdown(get_binary_file_downloader_html('./tmp', 'MIDI'), unsafe_allow_html = True)
 
     st.download_button(
         label="Download Midi file",

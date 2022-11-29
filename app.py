@@ -243,9 +243,9 @@ def run(file):
   generated_notes.head(20)
 
   out_file = 'output.mid'
-  out_pm = notes_to_midi(generated_notes, out_file=out_file)
+  output = notes_to_midi(generated_notes, out_file=out_file)
       #instrument_name=instrument_name
-  return(out_pm)
+  return(output)
 
 ################## Tensorflow Code
 
@@ -270,12 +270,12 @@ def main():
     #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 
     midi_file = None
-    out_pm = None
+    output = None
     temp = tempfile.NamedTemporaryFile(delete=False, prefix="out_", suffix=".mid")
 
     if uploaded_file is not None:
         midi_file = uploaded_file
-        out_pm = run(midi_file)
+        output = run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()
@@ -284,10 +284,10 @@ def main():
 
     with st.spinner(f"Please Wait"):
 
-        midi_data = out_pm
+        midi_data = output
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
-        temp.write(out_pm)
+        temp.write(midi_data)
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 

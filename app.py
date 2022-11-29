@@ -12,6 +12,7 @@ import streamlit as st
 from bs4 import BeautifulSoup
 from scipy.io import wavfile
 from PIL import Image
+import tempfile
 
 image1 = Image.open('Title.png')
 image2 = Image.open('Instructions.png')
@@ -247,7 +248,6 @@ def run(file):
 
 ################## Tensorflow Code
 
-fpath = './output.mid'
 
 def main():
 
@@ -270,6 +270,7 @@ def main():
 
     midi_file = None
     out_pm = None
+    fpath = './ '
 
     if uploaded_file is not None:
         midi_file = uploaded_file

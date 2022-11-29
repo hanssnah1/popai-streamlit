@@ -270,11 +270,10 @@ def main():
 
     midi_file = None
     out_pm = None
-    fpath = './ '
 
     if uploaded_file is not None:
         midi_file = uploaded_file
-        out_pm = run(midi_file, fpath)
+        out_pm = run(midi_file)
     else:
         st.error("Input MIDI file")
         st.stop()

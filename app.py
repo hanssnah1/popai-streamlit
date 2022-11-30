@@ -287,17 +287,17 @@ def main():
         audio_data = midi_data.fluidsynth()
         audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
         f = open("output.mid", "w")
-        output.write('output.mid')
+        midi_data.write('output.mid')
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 
     st.markdown(get_binary_file_downloader_html('./output.mid', 'MIDI'), unsafe_allow_html = True)
 
-    '''st.download_button(
+    st.download_button(
         label="Download Midi file",
         data=midi_data,
         file_name="output.mid"
-      )'''
+      )
     #st.audio(virtualfile)
 
 

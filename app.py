@@ -295,7 +295,7 @@ def main():
       global output
       output = run(midi_file)
       for instrument in output.instruments:
-        for note in instrument:
+        for note in instrument.notes:
               st.write(note)
   else:
       st.error("Input MIDI file")

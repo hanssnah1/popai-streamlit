@@ -110,6 +110,10 @@ def notes_to_midi(
   for i, note in notes.iterrows():
     start = float(prev_start + note['step'])
     end = float(start + note['duration'])
+    st.write("")
+    st.write(note['pitch'])
+    st.write(key_Value)
+    st.write(note['pitch']-key_Value)
     note = pretty_midi.Note(
         velocity=velocity,
         pitch=int(note['pitch']) - key_Value,

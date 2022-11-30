@@ -113,10 +113,10 @@ def notes_to_midi(
     st.write("")
     st.write(note['pitch'])
     st.write(key_Value)
-    st.write(note['pitch']-key_Value)
+    st.write(int(note['pitch']) - key_Value)
     note = pretty_midi.Note(
         velocity=velocity,
-        pitch=int(note['pitch']) - key_Value,
+        pitch=(int(note['pitch']) - key_Value),
         start=start,
         end=end,
     )

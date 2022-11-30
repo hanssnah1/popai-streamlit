@@ -294,7 +294,7 @@ def main():
       midi_file = uploaded_file
       global output
       output = run(midi_file)
-      for instrument in output:
+      for instrument in output.instruments:
         for note in instrument:
               st.write(note)
   else:

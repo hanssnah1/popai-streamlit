@@ -83,7 +83,7 @@ def midi_to_notes(midi_file: str) -> pd.DataFrame:
     start = note.start
     end = note.end
     notes['pitch'].append(note.pitch + key_Value)
-    st.write(notes.pitch + key_Value)
+    st.write(note.pitch + key_Value)
     notes['start'].append(start)
     notes['end'].append(end)
     notes['step'].append(start - prev_start)

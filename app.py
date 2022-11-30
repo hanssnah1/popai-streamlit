@@ -109,7 +109,7 @@ def notes_to_midi(
     end = float(start + note['duration'])
     note = pretty_midi.Note(
         velocity=velocity,
-        pitch=int(note['pitch']) - key_Value,
+        pitch=int(note['pitch']),
         start=start,
         end=end,
     )
@@ -235,7 +235,7 @@ def run(file):
     pitch, step, duration = predict_next_note(input_notes, model, temperature)
     start = prev_start + step
     end = start + duration
-    input_note = (pitch, step, duration)
+    input_note = (pitch - key_Value, step, duration)
     generated_notes.append((*input_note, start, end))
     input_notes = np.delete(input_notes, 0, axis=0)
     input_notes = np.append(input_notes, np.expand_dims(input_note, 0), axis=0)

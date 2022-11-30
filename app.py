@@ -17,7 +17,7 @@ image1 = Image.open('Title.png')
 image2 = Image.open('Instructions.png')
 
 key = ""
-keyDict = {"C": 0, "C# / Db": -1, "D": -2, "D# / Eb": -3, "E": -4, "F": -5, "F# / Gb": 6, "G": 7, "G# / Ab": 8, "A": 9, "A# / Bb": 10, "B": 11}
+keyDict = {"C": 0, "C#/Db": -1, "D": -2, "D#/Eb": -3, "E": -4, "F": -5, "F#/Gb": 6, "G": 7, "G#/Ab": 8, "A": 9, "A#/Bb": 10, "B": 11}
 key_Value = int()
 
 pm = None
@@ -268,6 +268,7 @@ def main():
     
     
     key_Value = keyDict[key]
+    st.write(key_Value)
 
     pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 

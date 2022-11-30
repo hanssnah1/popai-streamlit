@@ -83,17 +83,12 @@ def midi_to_notes(midi_file: str) -> pd.DataFrame:
     start = note.start
     end = note.end
     notes['pitch'].append(note.pitch + key_Value)
-    st.write(note.pitch)
-    st.write(key_Value)
-    st.write(note.pitch + key_Value)
-    st.write("")
     notes['start'].append(start)
     notes['end'].append(end)
     notes['step'].append(start - prev_start)
     notes['duration'].append(end - start)
     prev_start = start
-
-  st.write(notes['pitch'])
+    
   return pd.DataFrame({name: np.array(value) for name, value in notes.items()})
 
 def notes_to_midi(
@@ -110,17 +105,12 @@ def notes_to_midi(
   for i, note in notes.iterrows():
     start = float(prev_start + note['step'])
     end = float(start + note['duration'])
-    st.write("")
-    st.write(note['pitch'])
-    st.write(key_Value)
-    st.write(int(note['pitch']) - key_Value)
     note = pretty_midi.Note(
         velocity=velocity,
         pitch=(int(note['pitch']) - key_Value),
         start=start,
         end=end,
     )
-    st.write(note)
     instrument.notes.append(note)
     prev_start = end
 
@@ -279,8 +269,6 @@ def main():
   
   global key_Value
   key_Value = keyDict[pref_key]
-  st.write(pref_key)
-  st.write(key_Value)
 
   pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 
@@ -304,9 +292,6 @@ def main():
       midi_data = output
       audio_data = midi_data.fluidsynth()
       audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
-      for instrument in midi_data.instruments:
-            for note in instrument.notes:
-              st.write(note)
       midi_data.write('output2.mid')
       virtualfile = io.BytesIO()
       wavfile.write(virtualfile, 44100, audio_data)

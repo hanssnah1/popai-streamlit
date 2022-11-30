@@ -120,6 +120,7 @@ def notes_to_midi(
         start=start,
         end=end,
     )
+    st.write(note)
     instrument.notes.append(note)
     prev_start = end
 

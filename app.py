@@ -109,7 +109,7 @@ def notes_to_midi(
     end = float(start + note['duration'])
     note = pretty_midi.Note(
         velocity=velocity,
-        pitch=int(note['pitch'] - key_Value),
+        pitch=int(note['pitch']) - key_Value,
         start=start,
         end=end,
     )

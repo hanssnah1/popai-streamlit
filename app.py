@@ -83,12 +83,14 @@ def midi_to_notes(midi_file: str) -> pd.DataFrame:
     start = note.start
     end = note.end
     notes['pitch'].append(note.pitch + key_Value)
+    st.write(notes.pitch + key_Value)
     notes['start'].append(start)
     notes['end'].append(end)
     notes['step'].append(start - prev_start)
     notes['duration'].append(end - start)
     prev_start = start
 
+  st.write(notes['pitch'])
   return pd.DataFrame({name: np.array(value) for name, value in notes.items()})
 
 def notes_to_midi(

@@ -295,7 +295,7 @@ def main():
 
     st.download_button(
         label="Download Midi file",
-        data=midi_data,
+        data=virtualfile,
         file_name="output.mid"
       )
     #st.audio(virtualfile)

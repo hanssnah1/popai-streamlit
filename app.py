@@ -273,6 +273,7 @@ def main():
     
     
     key_Value = keyDict[key]
+    st.write(key)
     st.write(key_Value)
 
     pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)

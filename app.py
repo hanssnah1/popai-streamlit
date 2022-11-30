@@ -262,9 +262,10 @@ def main():
 
     uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
 
-    maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
     key = st.selectbox("Select Key", options = key_options)
+    maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
+    
     
     key_Value = keyDict[key]
 

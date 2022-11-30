@@ -302,11 +302,11 @@ def main():
 
   with st.spinner(f"Please Wait"):
       midi_data = output
-      for instrument in midi_data.instruments:
-        for note in instrument.notes:
-              st.write(note)
       audio_data = midi_data.fluidsynth()
       audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+      for instrument in midi_data.instruments:
+            for note in instrument.notes:
+              st.write(note)
       midi_data.write('output.mid')
       virtualfile = io.BytesIO()
       wavfile.write(virtualfile, 44100, audio_data)

@@ -291,7 +291,7 @@ def main():
         virtualfile = io.BytesIO()
         wavfile.write(virtualfile, 44100, audio_data)
 
-    st.markdown(get_binary_file_downloader_html('./output.mid', 'MIDI'), unsafe_allow_html = True)
+    st.markdown(get_binary_file_downloader_html('./output.mid', 'MID'), unsafe_allow_html = True)
 
     st.download_button(
         label="Download Midi file",

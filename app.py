@@ -293,11 +293,11 @@ def main():
 
     st.markdown(get_binary_file_downloader_html('./output.mid', 'MID'), unsafe_allow_html = True)
 
-    st.download_button(
-        label="Download Midi file",
-        data=virtualfile,
-        file_name="output.mid"
-      )
+    #st.download_button(
+    #   label="Download Midi file",
+    #  data=virtualfile,
+    # file_name="output.mid"
+    #)
     #st.audio(virtualfile)
 
 

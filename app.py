@@ -288,7 +288,7 @@ def main():
   #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 
   midi_file = None
-  output = None
+  global output
 
   if start:
       midi_file = uploaded_file

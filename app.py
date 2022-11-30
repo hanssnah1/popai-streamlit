@@ -17,7 +17,7 @@ image1 = Image.open('Title.png')
 image2 = Image.open('Instructions.png')
 
 pref_key = ""
-keyDict = {"C": 0, "C#/Db": -1, "D": -2, "D#/Eb": -3, "E": -4, "F": -5, "F#/Gb": 6, "G": 7, "G#/Ab": 8, "A": 9, "A#/Bb": 10, "B": 11}
+keyDict = {"C": 0, "C#/Db": -1, "D": -2, "D#/Eb": -3, "E": -4, "F": -5, "F#/Gb": 6, "G": 5, "G#/Ab": 4, "A": 3, "A#/Bb": 2, "B": 1}
 key_Value = int()
 
 pm = None

@@ -9,4 +9,3 @@ seaborn
 numpy
 pathlib
 pandas
-tensorflow

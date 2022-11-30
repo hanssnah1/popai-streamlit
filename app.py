@@ -259,56 +259,57 @@ def run(file):
 
 def main():
 
-    st.image(image1)
-    st.image(image2)
-    #st.title("Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
-    #st.header("Input a midi file of 25 notes.")
-    sess = load_session()
+  st.image(image1)
+  st.image(image2)
+  #st.title("Pop Music Midi Generation using Long Short-Term Memory based Recurrent Neural Network")
+  #st.header("Input a midi file of 25 notes.")
+  sess = load_session()
 
-    uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
+  uploaded_file = st.file_uploader("Upload MIDI file", type=["mid"])
 
-    key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
-    global pref_key = st.selectbox("Select Key", options = key_options)
-    maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
-    
-    
-    global key_Value = keyDict[pref_key]
-    st.write(pref_key)
-    st.write(key_Value)
+  key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
+  global pref_key
+  pref_key = st.selectbox("Select Key", options = key_options)
+  maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
+  
+  global key_Value
+  key_Value = keyDict[pref_key]
+  st.write(pref_key)
+  st.write(key_Value)
 
-    pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
+  pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 
-    start = st.button("Run Program")
-    #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
+  start = st.button("Run Program")
+  #length_of_pred = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 
-    midi_file = None
-    output = None
+  midi_file = None
+  output = None
 
-    if start:
-        midi_file = uploaded_file
-        output = run(midi_file)
-    else:
-        st.error("Input MIDI file")
-        st.stop()
+  if start:
+      midi_file = uploaded_file
+      output = run(midi_file)
+  else:
+      st.error("Input MIDI file")
+      st.stop()
 
-    st.markdown("---")
+  st.markdown("---")
 
-    with st.spinner(f"Please Wait"):
-        midi_data = output
-        audio_data = midi_data.fluidsynth()
-        audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
-        midi_data.write('output.mid')
-        virtualfile = io.BytesIO()
-        wavfile.write(virtualfile, 44100, audio_data)
+  with st.spinner(f"Please Wait"):
+      midi_data = output
+      audio_data = midi_data.fluidsynth()
+      audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+      midi_data.write('output.mid')
+      virtualfile = io.BytesIO()
+      wavfile.write(virtualfile, 44100, audio_data)
 
-    st.markdown(get_binary_file_downloader_html('./output.mid', 'MID'), unsafe_allow_html = True)
+  st.markdown(get_binary_file_downloader_html('./output.mid', 'MID'), unsafe_allow_html = True)
 
-    #st.download_button(
-    #   label="Download Midi file",
-    #  data=virtualfile,
-    # file_name="output.mid"
-    #)
-    #st.audio(virtualfile)
+  #st.download_button(
+  #   label="Download Midi file",
+  #  data=virtualfile,
+  # file_name="output.mid"
+  #)
+  #st.audio(virtualfile)
 
 
 

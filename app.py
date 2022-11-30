@@ -16,6 +16,10 @@ from PIL import Image
 image1 = Image.open('Title.png')
 image2 = Image.open('Instructions.png')
 
+key = ""
+keyDict = {"C": 0, "C# / Db": -1, "D": -2, "D# / Eb": -3, "E": -4, "F": -5, "F# / Gb": 6, "G": 7, "G# / Ab": 8, "A": 9, "A# / Bb": 10, "B": 11}
+key_Value = int()
+
 pm = None
 instrument = None
 
@@ -78,7 +82,7 @@ def midi_to_notes(midi_file: str) -> pd.DataFrame:
   for note in sorted_notes:
     start = note.start
     end = note.end
-    notes['pitch'].append(note.pitch)
+    notes['pitch'].append(note.pitch + key_Value)
     notes['start'].append(start)
     notes['end'].append(end)
     notes['step'].append(start - prev_start)
@@ -103,7 +107,7 @@ def notes_to_midi(
     end = float(start + note['duration'])
     note = pretty_midi.Note(
         velocity=velocity,
-        pitch=int(note['pitch']),
+        pitch=int(note['pitch'] - key_Value),
         start=start,
         end=end,
     )
@@ -260,7 +264,9 @@ def main():
 
     maj_or_min = st.selectbox("Major or Minor?", ('Major', 'Minor'))
     key_options = ['C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb','G','G#/Ab','A', 'A#/Bb', 'B']
-    pref_key = st.selectbox("Select Key", options = key_options)
+    key = st.selectbox("Select Key", options = key_options)
+    
+    key_Value = keyDict[key]
 
     pref_length_of_pred = st.slider("Select number of notes", 1, 15, 10)
 

@@ -294,6 +294,7 @@ def main():
       midi_file = uploaded_file
       global output
       output = run(midi_file)
+      st.write(output)
   else:
       st.error("Input MIDI file")
       st.stop()
